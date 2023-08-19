@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option go_package = "github.com/aimbot1526/test-go/generated";
+
+service ShopService {
+    rpc CreateShop(CreateShopReq) returns (CreateShopRes);
+    rpc NearByShop(NearByShopReq) returns (NearByShopRes);
+    rpc NearByUsers(NearByNeighbourReq) returns (NearByNeighbourRes);
+}
+
+message Shop {
+    string name = 1;
+    repeated Users users = 2;
+    Location location = 3;   
+}
+message Location {
+    double lat = 1;
+    double long = 2;
+}
+
+message Users {
+    string name = 1;
+}
+
+message CreateShopReq {
+    Shop shop = 1;
+}
+
+message CreateShopRes {
+    Shop shop = 1; 
+}
+
+message NearByShopReq {
+    Location location = 1;    
+}
+
+message NearByShopRes {
+    repeated Shop shop = 1;
+}
+
+message NearByNeighbourReq {
+    Location location = 1;
+    int32 range = 2;
+}
+
+message NearByNeighbourRes {
+    repeated Users users = 1;
+}

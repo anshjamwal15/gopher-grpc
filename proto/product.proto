@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "github.com/aimbot1526/test-go/generated";
+
+service ProductService {
+    rpc ProductList(ProductListRequest) returns (ProductListResponse);
+    rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+    rpc ServiceableProduct(ServiceableProductRequest) returns (GetProductResponse);
+}
+
+message Product {
+    string name = 1;
+    int32 price = 2;
+    int32 stock = 3;
+}
+
+message GetProductRequest {
+    string name = 1;
+}
+
+message GetProductResponse { repeated Product product = 1; }
+
+message ProductListRequest {}
+
+message ServiceableProductRequest {}
+
+message ProductListResponse {
+   repeated Product product = 1;
+}
+
